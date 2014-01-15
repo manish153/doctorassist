@@ -28,18 +28,20 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/appointments", method = RequestMethod.GET)
-	public String appointments(Locale locale, Model model){
+	public String appointments(Model model, Principal principal){
+		String name = principal.getName();
+		model.addAttribute("username", name);
 		logger.info("appointments");
 		
 		return "appointments";
 	}
 	
-	@RequestMapping(value = "/patientdata", method = RequestMethod.GET)
-	public String patientdata(Locale locale, Model model){
-		logger.info("patient data");
-		
-		return "patientdata";
-	}
+//	@RequestMapping(value = "/patientdata", method = RequestMethod.GET)
+//	public String patientdata(Locale locale, Model model){
+//		logger.info("patient data");
+//		
+//		return "patientdata";
+//	}
 	
 	@RequestMapping(value = "/personal", method = RequestMethod.GET)
 	public String personal(Locale locale, Model model){
@@ -55,5 +57,12 @@ public class HomeController {
 		return "login";
 	}
 	
+	
+	@RequestMapping(value = "/loginfailed", method = RequestMethod.GET)
+	public String loginfailed(Locale locale, Model model){
+		logger.info("Unauthorized");
+		
+		return "loginfailed";
+	}
 	
 }

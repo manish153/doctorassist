@@ -7,24 +7,23 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link
-	href="//netdna.bootstrapcdn.com/bootswatch/2.3.2/amelia/bootstrap.min.css"
+	href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"
 	rel="stylesheet">
 </head>
 
 
-	<div class="container">
+	<div class="container" align="center">
 		<div class="content">
 			<div class="row">
 				<div class="login-form">
-					<h2>Login</h2>
+					<h2 class="form-signin-heading">Please signin here</h2>
 					<form action="<c:url value='j_spring_security_check'/>" method="POST">
 						<fieldset>
-							<div class="clearfix">
-								<input type="text" name='j_username'>
-							</div>
-							<div class="clearfix">
-								<input type="password" name='j_password'>
-							</div>
+						
+								<input type="text" name='j_username' class="form-control" placeholder="Username" required  style="width: 200px;"><br/>
+							
+								<input type="password" name='j_password' class="form-control" placeholder="Password" required style="width: 200px;"><br/>
+						
 							<button class="btn btn-primary" type="submit">Sign in</button>
 						</fieldset>
 					</form>
