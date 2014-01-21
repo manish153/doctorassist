@@ -43,12 +43,6 @@ public class HomeController {
 //		return "patientdata";
 //	}
 	
-	@RequestMapping(value = "/personal", method = RequestMethod.GET)
-	public String personal(Locale locale, Model model){
-		logger.info("personal");
-		
-		return "personal";
-	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Locale locale, Model model){
