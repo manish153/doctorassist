@@ -18,7 +18,7 @@
 			<a class="navbar-toggle" data-toggle="collapse"
 				data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 				class="icon-bar"></span> <span class="icon-bar"></span>
-			</a> <a class="navbar-brand" href="#">Doctor Assist</a>
+			</a> <a class="navbar-brand" href="#">DoctorAssist</a>
 
 			<ul class="nav navbar-nav">
 				<li><a href="${pageContext.request.contextPath}/home">Home</a></li>
@@ -30,7 +30,7 @@
 				</a>
 					<ul class="dropdown-menu">
 						<li><a href="${pageContext.request.contextPath}/personal">Personal</a></li>
-						<li><a href="#">Link</a></li>
+						<li><a href="${pageContext.request.contextPath}/table">table</a></li>
 					</ul></li>
 			</ul>
 			<ul class="nav pull-right">		
