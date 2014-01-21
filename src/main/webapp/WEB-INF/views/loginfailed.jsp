@@ -12,7 +12,7 @@
 </head>
 
 
-<div class="container">
+<div class="container" align="center">
 	<div class="content">
 		<div class="row">
 			<div class="login-form">
