@@ -10,11 +10,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mycompany.dao.SearchDAO;
 import com.mycompany.daoimpl.HibernateDaoImpl;
+import com.mycompany.daoimpl.SearchDAOImpl;
 import com.mycompany.model.Patient;
 import com.mycompany.utilsimpl.CommunicationImpl;
 
@@ -31,43 +37,44 @@ public class PatientDataController {
 	
 	@Autowired
 	private HibernateDaoImpl hibernateDaoImpl;
+
+	@Autowired
+	private SearchDAO searchDAO;
 	
-	@RequestMapping(value = "/patientdata", method = RequestMethod.GET)
-	public String patientdata(Locale locale, Model model){
+	@RequestMapping(value = "/newpatient", method = RequestMethod.GET)
+	public String newpatient(@ModelAttribute("patient")
+    Patient patient, BindingResult result){
 		logger.info("patient data in the new PatientDataController controller");
 		//ReadXML.convertToXML();
-		//readXMLService.convertToXML();		
+		//readXMLService.convertToXML();	
 		
-		Patient patient = new Patient();
-		//patient.setPid(2);    //THIS IS NOW AUTO_INCREMENT IN THE DATABASE .. not working though.. lol 
-		patient.setFirst_name("smith");
-		patient.setLast_name("lastName");
-		patient.setAge(66);
-		
-		
-		Session session = hibernateDaoImpl.getSessionFactory().openSession();
-		session.beginTransaction();
-		//session.save(patient);
-		Query q = session.createQuery("from Patient");
-		@SuppressWarnings("unchecked")
-		List<Patient> p1 = q.list();
-		System.out.println("data loaded here");
-		
-		
-		for(Patient p2 : p1){
-			System.out.println(p2.getPid());
-		}
-		
-		session.flush();
-		session.close();
-						
-		return "patientdata";
+		System.out.println("this is the patientid " + patient.getPid());
+		return "newpatient";
+	}
+
+	@RequestMapping(value = "/existingpatient", method = RequestMethod.GET)
+	public String existingpatient(@ModelAttribute("patient") 
+    Patient patient, BindingResult result){
+		logger.info("This is the exisiting patient page");
+		return "existingpatient";
+	}
+
+	
+	@RequestMapping(value = "/existingpatient/search", method = RequestMethod.GET)
+	public ModelAndView searchpatient(@RequestParam("searchid") int searchid){
+		logger.info("this is the search id " + searchid);
+		List<Object> patientresult = searchDAO.SearchPatientID(searchid);
+		ModelAndView mv = new ModelAndView("/existingpatient");
+		mv.addObject("patientresult", patientresult);
+		return mv;
 	}
 	
-	
 	@RequestMapping(value = "/success", method = RequestMethod.POST)
-	public String success(Locale locale, Model model){
+	public String success(@ModelAttribute("patient") 
+    Patient patient, BindingResult result){
 		logger.info("this is the new success page, xml code should be executed now");
+		
+		System.out.println("this is the patientid in success page " + patient.getPid());
 		
 		return "success";
 	}
@@ -81,7 +88,6 @@ public class PatientDataController {
 		
 		return "personal";
 	}
-	
 	
 	@RequestMapping(value = "/table", method = RequestMethod.GET)
 	public ModelAndView table(Locale locale, ModelAndView model){
