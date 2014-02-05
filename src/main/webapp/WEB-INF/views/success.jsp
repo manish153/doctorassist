@@ -5,11 +5,12 @@
 
 <jsp:include page="/WEB-INF/views/header.jsp" />
 
- <jsp:useBean id="patient" class="com.mycompany.model.Patient" scope="session"/>
-     <jsp:setProperty name="patient" property="*"/>
+<jsp:useBean id="patient" class="com.mycompany.model.Patient" scope="session"/>
+     <jsp:setProperty name="patient" property="*"/> 
 
 
 <form class="navbar-form pull-left">
  <h1>XML file successfully created</h1>
   <strong>values : <jsp:getProperty name="patient" property="pid"/> </strong> 
 </form>
+ 

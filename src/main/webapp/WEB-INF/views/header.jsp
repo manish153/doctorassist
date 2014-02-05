@@ -11,6 +11,7 @@
 <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 
+
 <div class="navbar">
 	<div class="navbar-inner">
 		<div class="container">
@@ -23,14 +24,21 @@
 			<ul class="nav navbar-nav">
 				<li><a href="${pageContext.request.contextPath}/home">Home</a></li>
 				<li><a href="${pageContext.request.contextPath}/appointments">Appointments</a></li>
-				<li><a href="${pageContext.request.contextPath}/patientdata">PatientData</a></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown"> PatientData <b class="caret"></b>
+				</a>
+					<ul class="dropdown-menu">
+						<li><a href="${pageContext.request.contextPath}/newpatient">New Patient</a></li>
+						<li><a href="${pageContext.request.contextPath}/existingpatient">Existing Patient</a></li>
+						<li><a href="${pageContext.request.contextPath}/table">All Patient Records</a></li>
+					</ul></li>
 				
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> Account <b class="caret"></b>
 				</a>
 					<ul class="dropdown-menu">
 						<li><a href="${pageContext.request.contextPath}/personal">Personal</a></li>
-						<li><a href="${pageContext.request.contextPath}/table">table</a></li>
+						
 					</ul></li>
 			</ul>
 			<ul class="nav pull-right">		

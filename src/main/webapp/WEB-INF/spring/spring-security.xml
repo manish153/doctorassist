@@ -13,6 +13,9 @@
 		<form-login login-page="/login" default-target-url="/home"
 			authentication-failure-url="/loginfailed" />
 		<logout logout-success-url="/login"  invalidate-session="true"/>
+		<session-management invalid-session-url="/login?error=sessionExpired" session-authentication-error-url="/login?error=alreadyLogin">
+             <concurrency-control max-sessions="1"  expired-url="/login?error=sessionExpiredDuplicateLogin" error-if-maximum-exceeded="false"/>
+        </session-management>
 	</http>
  
 	<authentication-manager>
@@ -24,4 +27,4 @@
 	  </authentication-provider>
 	</authentication-manager>
  
-</beans:beans> 
+</beans:beans>
